@@ -8,6 +8,19 @@
   --app-warm: #e9762b;
 }
 
+/* Custom Houdini property agar aliran krom Liquid Metal berputar mulus 60fps */
+@property --metal-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes liquid-metal-spin {
+  to {
+    --metal-angle: 360deg;
+  }
+}
+
 html {
   background-color: var(--app-bg);
   color: var(--app-ink);
@@ -38,104 +51,124 @@ html {
 }
 
 /* ==========================================================================
-   LIQUID GLASS BUTTON SYSTEM (Convex Meniscus & Diagonal Refractive Rim)
+   LIQUID METAL BUTTON SYSTEM (@johuniq Liquid Chrome & Mercury Horizon)
    ========================================================================== */
 
 .btn-liquid {
+  --lm-x: 50%;
+  --lm-y: 0%;
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  color: #121316 !important;
+  color: #f8fafc !important;
   font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
   isolation: isolate;
   cursor: pointer;
   user-select: none;
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-  background: radial-gradient(
-    115% 130% at 50% 48%,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(250, 251, 253, 0.94) 54%,
-    rgba(218, 223, 230, 0.88) 86%,
-    rgba(190, 196, 205, 0.82) 100%
-  );
+  overflow: hidden;
+  /* Inti logam cair (Metallic Horizon Core: Brushed Gunmetal -> Obsidian -> Chrome) */
+  background:
+    radial-gradient(
+      120% 100% at var(--lm-x) var(--lm-y),
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(192, 132, 252, 0.1) 38%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #3f3f46 0%,
+      #1f1f24 47%,
+      #09090b 52%,
+      #18181c 85%,
+      #2e2e36 100%
+    );
   box-shadow:
-    /* Bayangan lengkung dalam (Meniscus dome effect) */
-    inset 0 7px 13px -3px rgba(15, 18, 24, 0.22),
-    inset 0 -7px 13px -3px rgba(15, 18, 24, 0.16),
-    inset 6px 0 12px -4px rgba(15, 18, 24, 0.14),
-    inset -6px 0 12px -4px rgba(15, 18, 24, 0.14),
-    /* Pantulan kilau kaca bagian dalam */
-    inset 0 1.5px 2px rgba(255, 255, 255, 0.95),
-    inset 0 -1.5px 2px rgba(255, 255, 255, 0.9),
-    /* Bayangan jatuh lembut di bawah tombol */
-    0 10px 24px -6px rgba(0, 0, 0, 0.28),
-    0 3px 8px -2px rgba(0, 0, 0, 0.12);
+    /* Pantulan meniskus merkuri di tepi dalam */
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.9),
+    /* Cincin kedalaman luar */
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 12px 26px -6px rgba(0, 0, 0, 0.65),
+    0 4px 10px -2px rgba(0, 0, 0, 0.45);
   transition:
     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
     filter 0.3s ease;
 }
 
-/* Bias tepi kaca diagonal (gelap di kiri-atas & kanan-bawah seperti gambar) */
+/* Cincin Bezel Krom Cair 360 Derajat (Animated Liquid Chrome Rim) */
 .btn-liquid::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1.5px;
+  padding: 2px;
   background: conic-gradient(
-    from 125deg at 50% 50%,
-    rgba(15, 17, 22, 0.65) 0deg,
-    rgba(255, 255, 255, 0.95) 75deg,
-    rgba(15, 17, 22, 0.85) 165deg,
-    rgba(255, 255, 255, 0.9) 255deg,
-    rgba(15, 17, 22, 0.85) 335deg,
-    rgba(15, 17, 22, 0.65) 360deg
+    from var(--metal-angle),
+    #18181b 0deg,
+    #ffffff 38deg,
+    #a1a1aa 72deg,
+    #27272a 118deg,
+    #e9d5ff 165deg,
+    #ffffff 195deg,
+    #52525b 245deg,
+    #f4f4f5 305deg,
+    #18181b 360deg
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+  animation: liquid-metal-spin 4.5s linear infinite;
   pointer-events: none;
 }
 
-/* Kilau spekular cembung di bagian atas */
+/* Kilau Cermin Merkuri di Punggung Atas Tombol */
 .btn-liquid::after {
   content: "";
   position: absolute;
-  left: 12%;
-  right: 12%;
-  top: 3px;
-  height: 38%;
+  left: 10%;
+  right: 10%;
+  top: 2px;
+  height: 42%;
   border-radius: 9999px;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(255, 255, 255, 0.04) 100%
   );
   pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
 .btn-liquid:hover {
-  transform: translateY(-2px) scale(1.015);
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.1);
   box-shadow:
-    inset 0 8px 15px -3px rgba(15, 18, 24, 0.25),
-    inset 0 -8px 15px -3px rgba(15, 18, 24, 0.18),
-    inset 0 2px 3px rgba(255, 255, 255, 1),
-    0 14px 28px -6px rgba(0, 0, 0, 0.36),
-    0 4px 10px -2px rgba(0, 0, 0, 0.16);
+    inset 0 2px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.28),
+    0 16px 32px -6px rgba(0, 0, 0, 0.78),
+    0 0 22px -4px rgba(216, 180, 254, 0.38);
+}
+
+.btn-liquid:hover::before {
+  animation-duration: 2s;
 }
 
 .btn-liquid:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0.5px) scale(0.97);
 }
 
-/* Versi Frosted Translucent untuk Tombol Sekunder & Tab */
+/* ==========================================================================
+   SUBTLE LIQUID METAL (Brushed Titanium & Smoked Chrome untuk Tombol Sekunder/Tab)
+   ========================================================================== */
+
 .btn-liquid-subtle {
   position: relative;
   display: inline-flex;
@@ -143,37 +176,67 @@ html {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  color: var(--app-ink);
+  color: #f4f4f5 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
   isolation: isolate;
   cursor: pointer;
   user-select: none;
+  overflow: hidden;
   -webkit-backdrop-filter: blur(16px) saturate(160%);
   backdrop-filter: blur(16px) saturate(160%);
-  background: radial-gradient(
-    120% 120% at 50% 50%,
-    color-mix(in srgb, var(--app-ink) 14%, transparent) 0%,
-    color-mix(in srgb, var(--app-ink) 6%, transparent) 65%,
-    color-mix(in srgb, var(--app-ink) 18%, transparent) 100%
+  background: linear-gradient(
+    180deg,
+    rgba(63, 63, 70, 0.72) 0%,
+    rgba(24, 24, 28, 0.85) 50%,
+    rgba(9, 9, 11, 0.92) 54%,
+    rgba(39, 39, 44, 0.82) 100%
   );
   box-shadow:
-    inset 0 4px 10px -2px rgba(0, 0, 0, 0.22),
-    inset 0 -4px 10px -2px rgba(255, 255, 255, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.35),
-    0 6px 16px -4px rgba(0, 0, 0, 0.2);
-  border: 1px solid color-mix(in srgb, var(--app-ink) 24%, transparent);
+    inset 0 1px 0.5px rgba(255, 255, 255, 0.45),
+    inset 0 -1.5px 2px rgba(0, 0, 0, 0.85),
+    0 8px 18px -5px rgba(0, 0, 0, 0.5);
   transition:
     transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s ease,
-    box-shadow 0.25s ease;
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.btn-liquid-subtle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: conic-gradient(
+    from var(--metal-angle),
+    rgba(39, 39, 42, 0.8) 0deg,
+    rgba(244, 244, 245, 0.85) 60deg,
+    rgba(82, 82, 91, 0.5) 140deg,
+    rgba(216, 180, 254, 0.7) 210deg,
+    rgba(255, 255, 255, 0.85) 290deg,
+    rgba(39, 39, 42, 0.8) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: liquid-metal-spin 6s linear infinite;
+  pointer-events: none;
 }
 
 .btn-liquid-subtle:hover {
   transform: translateY(-1.5px);
-  border-color: color-mix(in srgb, var(--app-ink) 42%, transparent);
+  filter: brightness(1.12);
   box-shadow:
-    inset 0 5px 12px -2px rgba(0, 0, 0, 0.26),
-    inset 0 1.5px 2px rgba(255, 255, 255, 0.5),
-    0 10px 20px -5px rgba(0, 0, 0, 0.28);
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.9),
+    0 12px 24px -5px rgba(0, 0, 0, 0.65),
+    0 0 16px -4px rgba(216, 180, 254, 0.25);
+}
+
+.btn-liquid-subtle:hover::before {
+  animation-duration: 2.4s;
 }
 
 .btn-liquid-subtle:active {
