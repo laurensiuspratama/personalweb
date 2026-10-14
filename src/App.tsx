@@ -1,9 +1,8 @@
 import * as React from "react"
-import { Sparkles, Layers } from "lucide-react"
+import { Sparkles } from "lucide-react"
 import HalftoneWordmarkFooter, {
   type HalftonePreset,
 } from "@/components/ui/halftone-wordmark-footer"
-import MotionFooter from "@/components/ui/motion-footer"
 import VioletSwirlShader from "@/components/ui/violet-swirl-shader"
 import { Navbar } from "@/components/Navbar"
 import { HeroSection } from "@/components/HeroSection"
@@ -40,7 +39,6 @@ export default function App() {
   })
 
   const [shaderEnabled, setShaderEnabled] = React.useState(true)
-  const [footerStyle, setFooterStyle] = React.useState<"motion" | "halftone">("motion")
   const [activeProject, setActiveProject] = React.useState<ProjectItem | null>(null)
   const [playground, setPlayground] = React.useState<PlaygroundConfig>(DEFAULT_PLAYGROUND)
 
@@ -78,75 +76,29 @@ export default function App() {
         <AboutSection />
         <HalftonePlayground
           config={playground}
-          onChange={(next) => {
-            setPlayground(next)
-            setFooterStyle("halftone")
-          }}
-          onReset={() => {
-            setPlayground(DEFAULT_PLAYGROUND)
-            setFooterStyle("motion")
-          }}
+          onChange={setPlayground}
+          onReset={() => setPlayground(DEFAULT_PLAYGROUND)}
         />
         <ContactSection />
       </main>
 
-      {/* Footer Mode Switcher Bar + Main Footer */}
+      {/* Main Halftone Wordmark Footer */}
       <div className="relative z-10 w-full">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-8 hairline-t surface-subtle">
-          <span className="font-mono text-[11px] tracking-[0.18em] uppercase opacity-75">
-            FOOTER ENGINE: {footerStyle === "motion" ? "MOTION FOOTER (@JAHED)" : "HALFTONE CANVAS"}
-          </span>
-          <div className="flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={() => setFooterStyle("motion")}
-              className={
-                footerStyle === "motion"
-                  ? "btn-liquid px-4 py-1.5 font-mono text-[10px] tracking-[0.15em] uppercase"
-                  : "btn-liquid-subtle px-4 py-1.5 font-mono text-[10px] tracking-[0.15em] uppercase opacity-75"
-              }
-            >
-              <Layers className="h-3 w-3" />
-              <span>Motion Footer</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setFooterStyle("halftone")}
-              className={
-                footerStyle === "halftone"
-                  ? "btn-liquid px-4 py-1.5 font-mono text-[10px] tracking-[0.15em] uppercase"
-                  : "btn-liquid-subtle px-4 py-1.5 font-mono text-[10px] tracking-[0.15em] uppercase opacity-75"
-              }
-            >
-              <span>Halftone Dots</span>
-            </button>
-          </div>
-        </div>
-
-        {footerStyle === "motion" ? (
-          <MotionFooter
-            brandName="Laurensius Pratama"
-            wordmark={(playground.wordmark || "LAURENSIUS").toUpperCase()}
-            email="laurensdap@gmail.com"
-            columns={FOOTER_COLUMNS}
-          />
-        ) : (
-          <HalftoneWordmarkFooter
-            wordmark={playground.wordmark || "laurensius"}
-            label="Laurensius Pratama"
-            meta="©2026 · Yogyakarta / Indonesia · Full-Stack & QA"
-            columns={FOOTER_COLUMNS}
-            preset={preset}
-            palette={footerPalette}
-            dotGap={playground.dotGap}
-            radius={playground.radius}
-            crop={playground.crop}
-            grain={playground.grain}
-            interactive={playground.interactive}
-            backToTop={true}
-            height="560px"
-          />
-        )}
+        <HalftoneWordmarkFooter
+          wordmark={playground.wordmark || "laurensius"}
+          label="Laurensius Pratama"
+          meta="©2026 · Yogyakarta / Indonesia · Full-Stack & QA"
+          columns={FOOTER_COLUMNS}
+          preset={preset}
+          palette={footerPalette}
+          dotGap={playground.dotGap}
+          radius={playground.radius}
+          crop={playground.crop}
+          grain={playground.grain}
+          interactive={playground.interactive}
+          backToTop={true}
+          height="560px"
+        />
       </div>
 
       {/* Tombol Mengambang Liquid Metal untuk Mengatur Violet Swirl Shader */}
