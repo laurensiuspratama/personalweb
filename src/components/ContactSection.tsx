@@ -83,7 +83,7 @@ export function ContactSection() {
     <section id="contact" className="py-16 sm:py-24 hairline-b">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
-          {/* Left Column: Direct Contact Info */}
+          {/* Left Column */}
           <div className="lg:col-span-5">
             <p className="font-mono text-xs tracking-[0.2em] uppercase text-warm">
               04 // INITIATE COLLABORATION
@@ -111,7 +111,7 @@ export function ContactSection() {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 font-mono text-[10px] tracking-[0.15em] uppercase hairline-box surface-hover"
+                  className="btn-liquid-subtle px-4 py-1.5 font-mono text-[10px] tracking-[0.15em] uppercase"
                 >
                   {copied ? (
                     <>
@@ -141,7 +141,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column: Validated Interactive Form */}
+          {/* Right Column */}
           <div className="p-6 sm:p-8 hairline-box surface-subtle lg:col-span-7">
             {status === "success" ? (
               <div className="py-8 text-center">
@@ -153,17 +153,16 @@ export function ContactSection() {
                   Terima kasih, {form.name}!
                 </h3>
                 <p className="mx-auto mt-2 max-w-md text-sm opacity-80">
-                  Pesan Anda telah diformat dan siap dikirimkan. Klik tombol di bawah untuk
-                  membuka aplikasi email Anda dengan draf yang sudah terisi otomatis, atau kirim
-                  pesan baru.
+                  Pesan Anda telah diformat dan siap dikirimkan. Klik tombol Liquid Glass di bawah
+                  untuk membuka aplikasi email Anda.
                 </p>
                 <div className="mt-6 flex flex-wrap justify-center gap-3">
                   <a
                     href={mailtoHref}
-                    className="inline-flex items-center gap-2 bg-warm px-6 py-3 font-mono text-xs font-semibold tracking-[0.16em] uppercase text-canvas"
+                    className="btn-liquid px-6 py-3 font-mono text-xs tracking-[0.16em] uppercase"
                   >
                     <Mail className="h-4 w-4" />
-                    Buka Aplikasi Email
+                    <span>Buka Aplikasi Email</span>
                   </a>
                   <button
                     type="button"
@@ -172,7 +171,7 @@ export function ContactSection() {
                       setErrors({})
                       setStatus("idle")
                     }}
-                    className="px-5 py-3 font-mono text-xs tracking-[0.16em] uppercase hairline-box surface-hover"
+                    className="btn-liquid-subtle px-5 py-3 font-mono text-xs tracking-[0.16em] uppercase"
                   >
                     Buat Pesan Baru
                   </button>
@@ -293,7 +292,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="inline-flex w-full items-center justify-center gap-2 bg-warm px-6 py-3.5 font-mono text-xs font-semibold tracking-[0.18em] uppercase text-canvas transition-opacity disabled:opacity-50"
+                  className="btn-liquid w-full py-3.5 font-mono text-xs tracking-[0.18em] uppercase disabled:opacity-50"
                 >
                   <Send className="h-4 w-4" />
                   <span>

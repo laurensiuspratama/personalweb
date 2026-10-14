@@ -45,10 +45,10 @@ export function HalftonePlayground({
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex items-center gap-2 self-start px-4 py-2 font-mono text-xs tracking-[0.16em] uppercase hairline-box surface-hover lg:self-auto"
+            className="btn-liquid-subtle self-start px-5 py-2.5 font-mono text-xs tracking-[0.16em] uppercase lg:self-auto"
           >
             <RotateCcw className="h-3.5 w-3.5 text-warm" />
-            Reset Parameter Default
+            <span>Reset Parameter Default</span>
           </button>
         </div>
 
@@ -91,14 +91,14 @@ export function HalftonePlayground({
               >
                 Teks Wordmark (Huruf kecil direkomendasikan)
               </label>
-              <div className="mt-2 flex flex-wrap gap-2">
+              <div className="mt-2.5 flex flex-wrap items-center gap-2.5">
                 <input
                   id="hwf-wordmark-input"
                   type="text"
                   maxLength={16}
                   value={config.wordmark}
                   onChange={(e) => update("wordmark", e.target.value)}
-                  className="flex-1 bg-transparent px-3.5 py-2 font-mono text-sm hairline-box focus:outline-none focus:ring-1 focus:ring-warm"
+                  className="flex-1 rounded-full bg-transparent px-4 py-2 font-mono text-sm hairline-box focus:outline-none focus:ring-1 focus:ring-warm"
                   placeholder="laurensius"
                 />
                 {WORD_PRESETS.map((word) => (
@@ -106,11 +106,11 @@ export function HalftonePlayground({
                     key={word}
                     type="button"
                     onClick={() => update("wordmark", word)}
-                    className={`px-3 py-2 font-mono text-xs tracking-wider uppercase hairline-box ${
+                    className={
                       config.wordmark === word
-                        ? "bg-warm text-canvas font-semibold"
-                        : "surface-hover opacity-75"
-                    }`}
+                        ? "btn-liquid px-4 py-2 font-mono text-xs tracking-wider uppercase"
+                        : "btn-liquid-subtle px-4 py-2 font-mono text-xs tracking-wider uppercase opacity-80"
+                    }
                   >
                     {word}
                   </button>
@@ -225,9 +225,11 @@ export function HalftonePlayground({
                 role="switch"
                 aria-checked={config.interactive}
                 onClick={() => update("interactive", !config.interactive)}
-                className={`px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider hairline-box ${
-                  config.interactive ? "bg-warm text-canvas" : "opacity-60"
-                }`}
+                className={
+                  config.interactive
+                    ? "btn-liquid px-5 py-2 font-mono text-xs uppercase tracking-wider"
+                    : "btn-liquid-subtle px-5 py-2 font-mono text-xs uppercase tracking-wider opacity-65"
+                }
               >
                 {config.interactive ? "AKTIF" : "STATIS"}
               </button>

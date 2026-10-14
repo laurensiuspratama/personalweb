@@ -40,7 +40,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             type="button"
             onClick={onClose}
             aria-label="Tutup detail proyek"
-            className="inline-flex h-8 w-8 items-center justify-center hairline-box surface-hover"
+            className="btn-liquid-subtle h-8 w-8 p-0"
           >
             <X className="h-4 w-4" />
           </button>
@@ -103,10 +103,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               Teknologi & Metodologi
             </h3>
             <div className="mt-2.5 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
+              {project.tags.map((tag: string) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 font-mono text-xs tracking-wider uppercase hairline-box surface-subtle"
+                  className="rounded-full px-3 py-1 font-mono text-xs tracking-wider uppercase hairline-box surface-subtle"
                 >
                   {tag}
                 </span>
@@ -120,7 +120,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               href={project.repoUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs tracking-[0.16em] uppercase hairline-box surface-hover"
+              className="btn-liquid-subtle px-5 py-2.5 font-mono text-xs tracking-[0.16em] uppercase"
             >
               <span>Dokumentasi / Repository</span>
               <ExternalLink className="h-3.5 w-3.5" />
@@ -129,7 +129,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="bg-warm px-6 py-2.5 font-mono text-xs font-semibold tracking-[0.16em] uppercase text-canvas"
+              className="btn-liquid px-6 py-2.5 font-mono text-xs tracking-[0.16em] uppercase"
             >
               Tutup Studi Kasus
             </button>

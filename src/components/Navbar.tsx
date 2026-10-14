@@ -20,7 +20,7 @@ export function Navbar({ preset, onPresetChange }: NavbarProps) {
   const presets: HalftonePreset[] = ["night", "paper", "ember", "cobalt"]
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-canvas/90 backdrop-blur-md hairline-b">
+    <header className="sticky top-0 z-40 w-full bg-canvas/85 backdrop-blur-md hairline-b">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         {/* Brand Identity */}
         <a
@@ -40,7 +40,7 @@ export function Navbar({ preset, onPresetChange }: NavbarProps) {
             <a
               key={item.href}
               href={item.href}
-              className="group font-mono text-[11px] tracking-[0.18em] uppercase opacity-75 transition-opacity hover:opacity-100 focus-visible:outline focus-visible:outline-1 focus-visible:outline-warm"
+              className="group font-mono text-[11px] tracking-[0.18em] uppercase opacity-75 transition-opacity hover:opacity-100"
             >
               <span className="mr-1.5 text-warm opacity-70">{item.index}.</span>
               <span className="border-b border-transparent pb-0.5 transition-colors group-hover:border-current">
@@ -50,14 +50,14 @@ export function Navbar({ preset, onPresetChange }: NavbarProps) {
           ))}
         </nav>
 
-        {/* Theme Preset Switcher + Mobile Button */}
+        {/* Theme Preset Switcher (Liquid Glass Pills) */}
         <div className="flex items-center gap-2">
           <div
             role="group"
             aria-label="Theme color presets"
-            className="flex items-center gap-1 rounded-full p-1 hairline-box surface-subtle"
+            className="flex items-center gap-1.5 rounded-full p-1 hairline-box surface-subtle"
           >
-            <Palette className="ml-1.5 mr-1 hidden h-3.5 w-3.5 opacity-50 sm:inline" aria-hidden="true" />
+            <Palette className="ml-2 mr-1 hidden h-3.5 w-3.5 opacity-60 sm:inline" aria-hidden="true" />
             {presets.map((p) => {
               const active = preset === p
               return (
@@ -67,11 +67,11 @@ export function Navbar({ preset, onPresetChange }: NavbarProps) {
                   onClick={() => onPresetChange(p)}
                   title={`Tema ${THEME_PALETTES[p].name}`}
                   aria-pressed={active}
-                  className={`rounded-full px-2.5 py-1 font-mono text-[10px] tracking-[0.14em] uppercase transition-all focus-visible:outline focus-visible:outline-1 focus-visible:outline-warm ${
+                  className={
                     active
-                      ? "bg-warm text-canvas font-semibold shadow-sm"
-                      : "opacity-65 hover:opacity-100"
-                  }`}
+                      ? "btn-liquid px-3 py-1 font-mono text-[10px] tracking-[0.14em] uppercase"
+                      : "rounded-full px-2.5 py-1 font-mono text-[10px] tracking-[0.14em] uppercase opacity-65 transition-opacity hover:opacity-100"
+                  }
                 >
                   {p}
                 </button>
@@ -84,7 +84,7 @@ export function Navbar({ preset, onPresetChange }: NavbarProps) {
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md hairline-box md:hidden"
+            className="btn-liquid-subtle h-9 w-9 p-0 md:hidden"
           >
             {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>

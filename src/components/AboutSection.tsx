@@ -1,10 +1,10 @@
 import * as React from "react"
-import { WORKFLOW_STEPS, SKILL_GROUPS } from "@/data/portfolio"
+import { WORKFLOW_STEPS, SKILL_GROUPS, type SkillGroup } from "@/data/portfolio"
 
 export function AboutSection() {
   const [activeSkillTab, setActiveSkillTab] = React.useState(SKILL_GROUPS[0].id)
   const currentGroup =
-    SKILL_GROUPS.find((g) => g.id === activeSkillTab) || SKILL_GROUPS[0]
+    SKILL_GROUPS.find((g: SkillGroup) => g.id === activeSkillTab) || SKILL_GROUPS[0]
 
   return (
     <section id="about" className="py-16 sm:py-24 hairline-b">
@@ -63,7 +63,7 @@ export function AboutSection() {
           </div>
         </div>
 
-        {/* Interactive Skills Matrix */}
+        {/* Interactive Skills Matrix with Liquid Glass Tabs */}
         <div className="pt-16">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div>
@@ -75,8 +75,8 @@ export function AboutSection() {
               </h3>
             </div>
 
-            <div role="tablist" aria-label="Kategori keahlian" className="flex flex-wrap gap-2">
-              {SKILL_GROUPS.map((group) => {
+            <div role="tablist" aria-label="Kategori keahlian" className="flex flex-wrap gap-2.5">
+              {SKILL_GROUPS.map((group: SkillGroup) => {
                 const isSelected = group.id === activeSkillTab
                 return (
                   <button
@@ -85,11 +85,11 @@ export function AboutSection() {
                     type="button"
                     aria-selected={isSelected}
                     onClick={() => setActiveSkillTab(group.id)}
-                    className={`px-4 py-2 font-mono text-xs tracking-[0.15em] uppercase transition-all hairline-box ${
+                    className={
                       isSelected
-                        ? "bg-warm text-canvas font-semibold"
-                        : "surface-subtle opacity-75 hover:opacity-100"
-                    }`}
+                        ? "btn-liquid px-5 py-2.5 font-mono text-xs tracking-[0.15em] uppercase"
+                        : "btn-liquid-subtle px-5 py-2.5 font-mono text-xs tracking-[0.15em] uppercase opacity-80"
+                    }
                   >
                     {group.label}
                   </button>
@@ -108,7 +108,7 @@ export function AboutSection() {
               >
                 <div className="flex items-start justify-between gap-2">
                   <strong className="font-sans text-base font-bold">{skill.name}</strong>
-                  <span className="px-2 py-0.5 font-mono text-[10px] tracking-wider uppercase text-warm hairline-box">
+                  <span className="rounded-full px-2.5 py-0.5 font-mono text-[10px] tracking-wider uppercase text-warm hairline-box">
                     {skill.level}
                   </span>
                 </div>

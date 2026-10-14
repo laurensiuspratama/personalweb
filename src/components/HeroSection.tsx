@@ -42,20 +42,21 @@ export function HeroSection() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
+            {/* Liquid Glass CTA Buttons */}
+            <div className="flex flex-wrap gap-4 lg:col-span-5 lg:justify-end">
               <a
                 href="#work"
-                className="inline-flex items-center gap-2.5 bg-warm px-6 py-3.5 font-mono text-xs font-semibold tracking-[0.18em] uppercase text-canvas transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm"
+                className="btn-liquid px-7 py-3.5 font-mono text-xs tracking-[0.16em] uppercase"
               >
-                Eksplorasi Karya
+                <span>Eksplorasi Karya</span>
                 <ArrowDownRight className="h-4 w-4" />
               </a>
               <a
                 href="#lab"
-                className="inline-flex items-center gap-2 px-5 py-3.5 font-mono text-xs tracking-[0.18em] uppercase transition-colors hairline-box surface-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm"
+                className="btn-liquid-subtle px-6 py-3.5 font-mono text-xs tracking-[0.16em] uppercase"
               >
                 <Sliders className="h-3.5 w-3.5 text-warm" />
-                Halftone Lab
+                <span>Halftone Lab</span>
               </a>
             </div>
           </div>
