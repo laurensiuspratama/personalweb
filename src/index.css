@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --app-bg: #0c0c0b;
+  --app-ink: #e9e4da;
+  --app-warm: #e9762b;
+}
+
+html {
+  background-color: var(--app-bg);
+  color: var(--app-ink);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Custom hairline border utility matching HalftoneWordmarkFooter */
+.hairline-t {
+  border-top: 1px solid color-mix(in srgb, var(--app-ink) 16%, transparent);
+}
+.hairline-b {
+  border-bottom: 1px solid color-mix(in srgb, var(--app-ink) 16%, transparent);
+}
+.hairline-l {
+  border-left: 1px solid color-mix(in srgb, var(--app-ink) 16%, transparent);
+}
+.hairline-r {
+  border-right: 1px solid color-mix(in srgb, var(--app-ink) 16%, transparent);
+}
+.hairline-box {
+  border: 1px solid color-mix(in srgb, var(--app-ink) 16%, transparent);
+}
+.surface-subtle {
+  background-color: color-mix(in srgb, var(--app-ink) 4%, var(--app-bg));
+}
+.surface-hover:hover {
+  background-color: color-mix(in srgb, var(--app-ink) 8%, var(--app-bg));
+}
