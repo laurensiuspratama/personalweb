@@ -15,7 +15,7 @@ interface FormErrors {
   message?: string
 }
 
-const DIRECT_EMAIL = "laurensius@pratama.dev"
+const DIRECT_EMAIL = "laurensdap@gmail.com"
 
 export function ContactSection() {
   const [form, setForm] = React.useState<FormState>({

@@ -278,7 +278,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: "Connect",
     links: [
-      { label: "laurensius@pratama.dev", href: "mailto:laurensius@pratama.dev" },
+      { label: "laurensdap@gmail.com", href: "mailto:laurensdap@gmail.com" },
       { label: "GitHub Profile", href: "https://github.com/laurensiuspratama" },
       { label: "LinkedIn Network", href: "https://linkedin.com" },
       { label: "Yogyakarta, ID", href: "#contact" },
