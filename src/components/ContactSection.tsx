@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Send, Copy, Check, Mail, MapPin, CheckCircle2, AlertTriangle } from "lucide-react"
+import { Send, Copy, Check, Mail, MapPin, CheckCircle2, AlertTriangle, ExternalLink } from "lucide-react"
 
 interface FormState {
   name: string
@@ -58,7 +58,7 @@ export function ContactSection() {
     setStatus("submitting")
     window.setTimeout(() => {
       setStatus("success")
-    }, 450)
+    }, 400)
   }
 
   const handleCopyEmail = async () => {
@@ -71,12 +71,15 @@ export function ContactSection() {
     }
   }
 
-  const mailtoHref = React.useMemo(() => {
+  const { mailtoHref, gmailWebHref } = React.useMemo(() => {
     const subject = encodeURIComponent(form.subject || "Kolaborasi Proyek — Laurensius Pratama")
     const body = encodeURIComponent(
       `Halo Laurensius,\n\nNama saya ${form.name} (${form.email}).\n\n${form.message}`
     )
-    return `mailto:${DIRECT_EMAIL}?subject=${subject}&body=${body}`
+    return {
+      mailtoHref: `mailto:${DIRECT_EMAIL}?subject=${subject}&body=${body}`,
+      gmailWebHref: `https://mail.google.com/mail/?view=cm&fs=1&to=${DIRECT_EMAIL}&su=${subject}&body=${body}`,
+    }
   }, [form])
 
   return (
@@ -94,7 +97,7 @@ export function ContactSection() {
             <p className="mt-4 text-sm leading-relaxed opacity-80">
               Terbuka untuk peluang kerja Full-Stack Developer, UI/UX Designer, maupun Software
               Quality Assurance Engineer. Kirimkan pesan melalui formulir tervalidasi di samping
-              atau salin alamat email langsung.
+              atau hubungi langsung via email.
             </p>
 
             <div className="mt-8 space-y-4">
@@ -103,9 +106,14 @@ export function ContactSection() {
                   <Mail className="h-4 w-4 text-warm" />
                   <div>
                     <span className="block font-mono text-[10px] tracking-[0.16em] uppercase opacity-55">
-                      SURAT ELEKTRONIK
+                      SURAT ELEKTRONIK RESMI
                     </span>
-                    <span className="font-mono text-xs">{DIRECT_EMAIL}</span>
+                    <a
+                      href={`mailto:${DIRECT_EMAIL}`}
+                      className="font-mono text-xs underline-offset-4 hover:underline"
+                    >
+                      {DIRECT_EMAIL}
+                    </a>
                   </div>
                 </div>
                 <button
@@ -147,21 +155,30 @@ export function ContactSection() {
               <div className="py-8 text-center">
                 <CheckCircle2 className="mx-auto h-12 w-12 text-warm" />
                 <p className="mt-4 font-mono text-xs tracking-[0.2em] uppercase text-warm">
-                  VALIDASI FORMULIR BERHASIL
+                  PESAN SIAP DIKIRIM KE {DIRECT_EMAIL}
                 </p>
                 <h3 className="mt-2 font-sans text-2xl font-bold">
                   Terima kasih, {form.name}!
                 </h3>
                 <p className="mx-auto mt-2 max-w-md text-sm opacity-80">
-                  Pesan Anda telah diformat dan siap dikirimkan. Klik tombol Liquid Glass di bawah
-                  untuk membuka aplikasi email Anda.
+                  Pilih metode pengiriman di bawah untuk langsung mengirimkan pesan Anda ke{" "}
+                  <strong>{DIRECT_EMAIL}</strong>:
                 </p>
                 <div className="mt-6 flex flex-wrap justify-center gap-3">
                   <a
-                    href={mailtoHref}
+                    href={gmailWebHref}
+                    target="_blank"
+                    rel="noreferrer"
                     className="btn-liquid px-6 py-3 font-mono text-xs tracking-[0.16em] uppercase"
                   >
-                    <Mail className="h-4 w-4" />
+                    <ExternalLink className="h-4 w-4" />
+                    <span>Kirim via Gmail Web</span>
+                  </a>
+                  <a
+                    href={mailtoHref}
+                    className="btn-liquid-subtle px-5 py-3 font-mono text-xs tracking-[0.16em] uppercase"
+                  >
+                    <Mail className="h-4 w-4 text-warm" />
                     <span>Buka Aplikasi Email</span>
                   </a>
                   <button
@@ -171,9 +188,9 @@ export function ContactSection() {
                       setErrors({})
                       setStatus("idle")
                     }}
-                    className="btn-liquid-subtle px-5 py-3 font-mono text-xs tracking-[0.16em] uppercase"
+                    className="btn-liquid-subtle px-5 py-3 font-mono text-xs tracking-[0.16em] uppercase opacity-75"
                   >
-                    Buat Pesan Baru
+                    Tulis Pesan Baru
                   </button>
                 </div>
               </div>
@@ -296,7 +313,7 @@ export function ContactSection() {
                 >
                   <Send className="h-4 w-4" />
                   <span>
-                    {status === "submitting" ? "Memvalidasi Pesan..." : "Validasi & Siapkan Pesan"}
+                    {status === "submitting" ? "Memvalidasi Pesan..." : "Kirim Pesan ke Laurensius"}
                   </span>
                 </button>
               </form>
