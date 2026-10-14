@@ -83,7 +83,7 @@ export const PROJECTS: ProjectItem[] = [
     tags: ["Figma", "Maze Testing", "SUS & SEQ Metrics", "Wireframing", "Design System"],
     metrics: "94% Mission Success Rate",
     liveUrl: "#work",
-    repoUrl: "https://github.com",
+    repoUrl: "https://github.com/laurensiuspratama",
   },
   {
     id: "ecommerce-qa-suite",
@@ -103,7 +103,7 @@ export const PROJECTS: ProjectItem[] = [
     tags: ["Katalon Studio", "Test Automation", "Bug Reporting", "Regression Testing", "Web QA"],
     metrics: "42 Automated Test Scenarios",
     liveUrl: "#work",
-    repoUrl: "https://github.com",
+    repoUrl: "https://github.com/laurensiuspratama",
   },
   {
     id: "halftone-editorial-system",
@@ -123,7 +123,7 @@ export const PROJECTS: ProjectItem[] = [
     tags: ["React 18", "TypeScript", "HTML5 Canvas", "Tailwind CSS", "shadcn/ui"],
     metrics: "60 FPS Spring Physics",
     liveUrl: "#lab",
-    repoUrl: "https://github.com",
+    repoUrl: "https://github.com/laurensiuspratama",
   },
   {
     id: "atm-core-workflow-architecture",
@@ -143,7 +143,7 @@ export const PROJECTS: ProjectItem[] = [
     tags: ["System Architecture", "Draw.io XML", "Use Case Spec", "Test Matrix", "Flowchart"],
     metrics: "100% Branch Coverage",
     liveUrl: "#work",
-    repoUrl: "https://github.com",
+    repoUrl: "https://github.com/laurensiuspratama",
   },
   {
     id: "retail-pos-desktop-suite",
@@ -163,7 +163,7 @@ export const PROJECTS: ProjectItem[] = [
     tags: ["Python", "GUI Architecture", "State Management", "Low-Fi Wireframe", "Debugging"],
     metrics: "Zero Unhandled Exceptions",
     liveUrl: "#work",
-    repoUrl: "https://github.com",
+    repoUrl: "https://github.com/laurensiuspratama",
   },
   {
     id: "academic-schedule-planner",
@@ -183,7 +183,7 @@ export const PROJECTS: ProjectItem[] = [
     tags: ["React", "TypeScript", "Tailwind CSS", "Responsive Grid", "Accessibility"],
     metrics: "Sub-100ms Filter Response",
     liveUrl: "#work",
-    repoUrl: "https://github.com",
+    repoUrl: "https://github.com/laurensiuspratama",
   },
 ]
 
@@ -279,7 +279,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     title: "Connect",
     links: [
       { label: "laurensius@pratama.dev", href: "mailto:laurensius@pratama.dev" },
-      { label: "GitHub Profile", href: "https://github.com" },
+      { label: "GitHub Profile", href: "https://github.com/laurensiuspratama" },
       { label: "LinkedIn Network", href: "https://linkedin.com" },
       { label: "Yogyakarta, ID", href: "#contact" },
     ],
